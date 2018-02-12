@@ -1,0 +1,31 @@
+<body>
+<article *ngFor="let pysakki of reitit">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h1>
+          {{ pysakki.name }} {{pysakki.code}}
+        </h1>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div fxLayout="row">
+      <div fxFlex="30">
+        <mat-list>
+          <mat-list-item *ngFor="let reitti of pysakki.patterns">
+            <h4 class="mat-header-cell">{{ reitti.route.shortName }}</h4>
+            <p [class]="reitti.directionId | routeDirection  "> <mat-icon>{{ reitti.directionId | routeDirection }}</mat-icon> </p>
+            <p class="longName">{{ reitti.route.longName }}</p>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div fxFlex>
+
+        <agm-map [latitude]="pysakki.lat" [longitude]="pysakki.lon" [zoom]="15">
+          <agm-marker [latitude]="pysakki.lat" [longitude]="pysakki.lon"></agm-marker>
+        </agm-map>
+      </div>
+
+    </div>
+  </mat-expansion-panel>
+</article>
+</body>
